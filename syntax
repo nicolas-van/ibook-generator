@@ -37,7 +37,6 @@ if then elseif else end
 # true false null
 # and or not lt gt le ge eq ne
 
-
 Syntaxic Analysis:
 ==================
 
@@ -59,8 +58,9 @@ relational_expr : additive_expr (relational additive_expr)*
 additive_expr : mult_expr (additive mult_expr)*
 mult_expr : unary_expr (mult unary_expr)*
 unary_expr : ("+" | "-" | non) unary_expr | postfix_expr
-postfix_expr : rvalue table_or_function? | "(" expression ")"
-table_or_function : "[" expression "]" | "(" (expression ("," expression)* ",")? ")"
+postfix_expr : rvalue (table | function)* | "(" expression ")"
+table : "[" expression "]"
+function : "(" (expression ("," expression)* ","? )? ")"
 rvalue : litteral | identifier | list | dictionary
 list : "[" ( expression ( "," expression  )* ","?  )?  "]"
 dictionary : "{" ( expression ":" expression ( "," expression ":" expression )* ","? )? "}"
